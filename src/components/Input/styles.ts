@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,24 +8,24 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#333333',
+    color: Colors.textPrimary,
     marginBottom: 8,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#CCCCCC',
+    borderColor: Colors.borderStrong,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 10,
     fontSize: 16,
-    color: '#333333',
-    backgroundColor: '#FFFFFF',
+    color: Colors.textPrimary,
+    backgroundColor: Colors.surface,
   },
   inputError: {
-    borderColor: '#FF3B30',
+    borderColor: Colors.error,
   },
   errorText: {
-    color: '#FF3B30',
+    color: Colors.error,
     fontSize: 12,
     marginTop: 4,
   },

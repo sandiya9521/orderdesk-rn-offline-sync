@@ -15,6 +15,7 @@ import {useAppDispatch} from '../../store/hooks';
 import {createOrder} from '../../store/thunks';
 import {Button} from '../../components/Button';
 import {Input} from '../../components/Input';
+import {Strings} from '../../constants/strings';
 import {styles} from './styles';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -31,15 +32,15 @@ export const CreateOrderScreen: React.FC = () => {
     const newErrors: {title?: string; amount?: string} = {};
 
     if (!title.trim()) {
-      newErrors.title = 'Title is required';
+      newErrors.title = Strings.validation.titleRequired;
     }
 
     if (!amount.trim()) {
-      newErrors.amount = 'Amount is required';
+      newErrors.amount = Strings.validation.amountRequired;
     } else {
       const amountNum = parseFloat(amount);
       if (isNaN(amountNum) || amountNum <= 0) {
-        newErrors.amount = 'Amount must be a valid positive number';
+        newErrors.amount = Strings.validation.amountPositive;
       }
     }
 
@@ -67,7 +68,7 @@ export const CreateOrderScreen: React.FC = () => {
       navigation.goBack();
     } catch (error) {
       Alert.alert(
-        'Error',
+        Strings.common.errorTitle,
         error instanceof Error ? error.message : String(error),
       );
     } finally {
@@ -82,33 +83,33 @@ export const CreateOrderScreen: React.FC = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
           <View style={styles.form}>
-            <Text style={styles.screenTitle}>Create New Order</Text>
+            <Text style={styles.screenTitle}>{Strings.screens.createOrder.screenTitle}</Text>
             <Input
-              label="Title"
+              label={Strings.order.titleLabel}
               value={title}
               onChangeText={setTitle}
-              placeholder="Enter order title"
+              placeholder={Strings.order.titlePlaceholder}
               error={errors.title}
               autoCapitalize="words"
               maxLength={30}
             />
             <Input
-              label="Amount"
+              label={Strings.order.amountLabel}
               value={amount}
               onChangeText={handleAmountChange}
-              placeholder="0.00"
+              placeholder={Strings.order.amountPlaceholder}
               keyboardType="decimal-pad"
               error={errors.amount}
             />
             <View style={styles.buttonContainer}>
               <Button
-                title="Cancel"
+                title={Strings.common.cancel}
                 onPress={() => navigation.goBack()}
                 variant="secondary"
                 style={styles.button}
               />
               <Button
-                title="Create Order"
+                title={Strings.screens.createOrder.submitButton}
                 onPress={handleSubmit}
                 loading={isSubmitting}
                 disabled={isSubmitting}

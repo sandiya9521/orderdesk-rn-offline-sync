@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Order, SyncStatus} from '../../types';
+import {Strings} from '../../constants/strings';
 import {styles} from './styles';
 
 interface OrderCardProps {
@@ -48,14 +49,20 @@ export const OrderCard: React.FC<OrderCardProps> = ({order, onPress, onRetry}) =
       </View>
       <View style={styles.content}>
         <Text style={styles.amount}>${order.amount.toFixed(2)}</Text>
-        <Text style={styles.date}>Created: {formatDate(order.createdAt)}</Text>
+        <Text style={styles.date}>
+          {Strings.orderCard.createdPrefix}
+          {formatDate(order.createdAt)}
+        </Text>
         {order.updatedAt && (
-          <Text style={styles.date}>Updated: {formatDate(order.updatedAt)}</Text>
+          <Text style={styles.date}>
+            {Strings.orderCard.updatedPrefix}
+            {formatDate(order.updatedAt)}
+          </Text>
         )}
       </View>
       {order.syncStatus === SyncStatus.FAILED && onRetry && (
         <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
-          <Text style={styles.retryText}>Retry Sync</Text>
+          <Text style={styles.retryText}>{Strings.orderCard.retrySync}</Text>
         </TouchableOpacity>
       )}
     </TouchableOpacity>

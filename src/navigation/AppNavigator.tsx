@@ -4,6 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {OrderListScreen} from '../screens/OrderListScreen';
 import {CreateOrderScreen} from '../screens/CreateOrderScreen';
 import {EditOrderScreen} from '../screens/EditOrderScreen';
+import {Colors} from '../constants/colors';
+import {Strings} from '../constants/strings';
 
 export type RootStackParamList = {
   OrderList: undefined;
@@ -20,9 +22,9 @@ export const AppNavigator: React.FC = () => {
         initialRouteName="OrderList"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: Colors.surface,
           },
-          headerTintColor: '#333333',
+          headerTintColor: Colors.textPrimary,
           headerTitleStyle: {
             fontWeight: '600',
           },
@@ -35,12 +37,12 @@ export const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="CreateOrder"
           component={CreateOrderScreen}
-          options={{title: 'Create Order'}}
+          options={{title: Strings.screens.createOrder.submitButton}}
         />
         <Stack.Screen
           name="EditOrder"
           component={EditOrderScreen}
-          options={{title: 'Edit Order'}}
+          options={{title: Strings.screens.editOrder.screenTitle}}
         />
       </Stack.Navigator>
     </NavigationContainer>

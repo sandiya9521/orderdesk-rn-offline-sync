@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
   },
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: Colors.background,
   },
   list: {
     flex: 1,
@@ -16,25 +17,25 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: Colors.background,
   },
   loadingText: {
     marginTop: 16,
     fontSize: 16,
-    color: '#666666',
+    color: Colors.textSecondary,
   },
   header: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     paddingHorizontal: 16,
     paddingTop: 8,
     paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    borderBottomColor: Colors.border,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#333333',
+    color: Colors.textPrimary,
   },
   syncInfo: {
     flexDirection: 'row',
@@ -43,10 +44,10 @@ export const styles = StyleSheet.create({
   },
   syncText: {
     fontSize: 14,
-    color: '#666666',
+    color: Colors.textSecondary,
   },
   failedText: {
-    color: '#FF3B30',
+    color: Colors.error,
     fontWeight: '600',
   },
   listContent: {
@@ -54,10 +55,10 @@ export const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   listContentEmpty: {
-    flex:1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: Colors.background,
   },
   emptyContainer: {
     alignItems: 'center',
@@ -67,20 +68,20 @@ export const styles = StyleSheet.create({
   emptyText: {
     fontSize: 22,
     fontWeight: '600',
-    color: 'black',
+    color: Colors.black,
     marginBottom: 8,
   },
   emptySubtext: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#999999',
+    color: Colors.textMuted,
   },
   footer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     padding: 16,
     borderTopWidth: 1,
-    borderTopColor: '#E5E5E5',
-      gap: 12,
+    borderTopColor: Colors.border,
+    gap: 12,
     marginBottom: 16,
   },
 });

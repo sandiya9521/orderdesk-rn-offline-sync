@@ -4,6 +4,7 @@ import {AnyAction} from '@reduxjs/toolkit';
 import {Order, SyncStatus, CreateOrderPayload, UpdateOrderPayload} from '../types';
 import {storageService} from '../services/storage';
 import {syncService} from '../services/sync';
+import {Strings} from '../constants/strings';
 import {
   setLoading,
   setSyncing,
@@ -71,11 +72,11 @@ export const updateOrderAction = (
     const existingOrder = state.orders.items.find(order => order.id === payload.id);
 
     if (!existingOrder) {
-      throw new Error('Order not found');
+      throw new Error(Strings.errors.orderNotFound);
     }
 
     if (existingOrder.syncStatus === SyncStatus.SYNCED) {
-      throw new Error('Cannot edit synced orders');
+      throw new Error(Strings.errors.cannotEditSyncedOrders);
     }
 
     const updatedOrder: Order = {

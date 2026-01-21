@@ -1,12 +1,13 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
-    shadowColor: '#000',
+    shadowColor: Colors.shadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#333333',
+    color: Colors.textPrimary,
     flex: 1,
     marginRight: 8,
   },
@@ -34,19 +35,19 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
   },
   statusBadgeSynced: {
-    backgroundColor: '#34C759',
+    backgroundColor: Colors.success,
   },
   statusBadgePending: {
-    backgroundColor: '#FF9500',
+    backgroundColor: Colors.warning,
   },
   statusBadgeFailed: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: Colors.error,
   },
   statusBadgeDefault: {
-    backgroundColor: '#999999',
+    backgroundColor: Colors.textMuted,
   },
   statusText: {
-    color: '#FFFFFF',
+    color: Colors.white,
     fontSize: 10,
     fontWeight: '600',
     textTransform: 'uppercase',
@@ -57,24 +58,24 @@ export const styles = StyleSheet.create({
   amount: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#007AFF',
+    color: Colors.primary,
     marginBottom: 8,
   },
   date: {
     fontSize: 12,
-    color: '#666666',
+    color: Colors.textSecondary,
     marginTop: 4,
   },
   retryButton: {
     marginTop: 12,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    backgroundColor: '#FF3B30',
+    backgroundColor: Colors.error,
     borderRadius: 6,
     alignSelf: 'flex-start',
   },
   retryText: {
-    color: '#FFFFFF',
+    color: Colors.white,
     fontSize: 14,
     fontWeight: '600',
   },

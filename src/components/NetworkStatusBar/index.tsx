@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useNetworkStatus} from '../../hooks/useNetworkStatus';
+import {Strings} from '../../constants/strings';
 import {styles} from './styles';
 
 export const NetworkStatusBar: React.FC = () => {
@@ -12,7 +13,7 @@ export const NetworkStatusBar: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>No Internet Connection - Working Offline</Text>
+      <Text style={styles.text}>{Strings.network.offlineBanner}</Text>
     </View>
   );
 };

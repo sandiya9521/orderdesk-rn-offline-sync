@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Order} from '../types';
+import {Strings} from '../constants/strings';
 
 const STORAGE_KEY = '@orderDesk:orders';
 
@@ -12,7 +13,7 @@ export const storageService = {
       const jsonValue = JSON.stringify(orders);
       await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
     } catch (error) {
-      throw new Error('Failed to save orders to storage');
+      throw new Error(Strings.errors.storageSaveFailed);
     }
   },
 
@@ -24,7 +25,7 @@ export const storageService = {
       const jsonValue = await AsyncStorage.getItem(STORAGE_KEY);
       return jsonValue != null ? JSON.parse(jsonValue) : [];
     } catch (error) {
-      throw new Error('Failed to load orders from storage');
+      throw new Error(Strings.errors.storageLoadFailed);
     }
   },
 
@@ -35,7 +36,7 @@ export const storageService = {
     try {
       await AsyncStorage.removeItem(STORAGE_KEY);
     } catch (error) {
-      throw new Error('Failed to clear orders from storage');
+      throw new Error(Strings.errors.storageClearFailed);
     }
   },
 };

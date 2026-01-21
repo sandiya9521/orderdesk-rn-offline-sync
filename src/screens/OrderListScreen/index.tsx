@@ -18,6 +18,8 @@ import {OrderCard} from '../../components/OrderCard';
 import {NetworkStatusBar} from '../../components/NetworkStatusBar';
 import {useNetworkStatus} from '../../hooks/useNetworkStatus';
 import {Order, SyncStatus} from '../../types';
+import {Colors} from '../../constants/colors';
+import {Strings} from '../../constants/strings';
 import {styles} from './styles';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -54,7 +56,10 @@ export const OrderListScreen: React.FC = () => {
       navigation.navigate('EditOrder', {orderId: order.id});
       return;
     }
-    Alert.alert('Info', 'This order is already synced and cannot be edited.');
+    Alert.alert(
+      Strings.common.infoTitle,
+      Strings.screens.orderList.syncedNotEditableMessage,
+    );
   };
 
   const handleRetrySync = (orderId: string) => {
@@ -82,9 +87,9 @@ export const OrderListScreen: React.FC = () => {
 
   const renderEmptyComponent = () => (
     <View style={styles.emptyContainer}>
-      <Text style={styles.emptyText}>No orders yet</Text>
+      <Text style={styles.emptyText}>{Strings.screens.orderList.emptyTitle}</Text>
       <Text style={styles.emptySubtext}>
-        Create your first order to get started
+        {Strings.screens.orderList.emptySubtitle}
       </Text>
     </View>
   );
@@ -95,8 +100,8 @@ export const OrderListScreen: React.FC = () => {
   if (isLoading) {
     return (
       <View style={styles.centerContainer}>
-        <ActivityIndicator size="large" color="#007AFF" />
-        <Text style={styles.loadingText}>Loading orders...</Text>
+        <ActivityIndicator size="large" color={Colors.primary} />
+        <Text style={styles.loadingText}>{Strings.screens.orderList.loading}</Text>
       </View>
     );
   }
@@ -106,15 +111,17 @@ export const OrderListScreen: React.FC = () => {
       <View style={styles.container}>
         <NetworkStatusBar />
         <View style={styles.header}>
-          <Text style={styles.title}>Orders</Text>
+          <Text style={styles.title}>{Strings.screens.orderList.headerTitle}</Text>
           {(pendingCount > 0 || failedCount > 0) && (
             <View style={styles.syncInfo}>
               {pendingCount > 0 && (
-                <Text style={styles.syncText}>{pendingCount} pending</Text>
+                <Text style={styles.syncText}>
+                  {pendingCount} {Strings.screens.orderList.pendingSuffix}
+                </Text>
               )}
               {failedCount > 0 && (
                 <Text style={[styles.syncText, styles.failedText]}>
-                  {failedCount} failed
+                  {failedCount} {Strings.screens.orderList.failedSuffix}
                 </Text>
               )}
             </View>
@@ -131,15 +138,19 @@ export const OrderListScreen: React.FC = () => {
             <RefreshControl
               refreshing={isSyncing}
               onRefresh={handleRefresh}
-              tintColor="#007AFF"
+              tintColor={Colors.primary}
             />
           }
         />
         <View style={styles.footer}>
-          <Button title="Create Order" onPress={handleCreatePress} fullWidth />
+          <Button
+            title={Strings.screens.orderList.createOrderButton}
+            onPress={handleCreatePress}
+            fullWidth
+          />
           {isConnected && pendingCount > 0 && (
             <Button
-              title="Sync Now"
+              title={Strings.screens.orderList.syncNowButton}
               onPress={handleSyncNow}
               disabled={isSyncing}
               loading={isSyncing}

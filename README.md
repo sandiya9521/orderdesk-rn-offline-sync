@@ -40,6 +40,9 @@ A React Native application demonstrating offline-first architecture with automat
 ```
 orderdesk/
 ├── src/
+│   ├── constants/               # App-wide constants
+│   │   ├── colors.ts            # Centralized color palette
+│   │   └── strings.ts           # Centralized UI strings
 │   ├── components/              # Reusable UI components
 │   │   ├── Button/
 │   │   │   ├── index.tsx       # Button component

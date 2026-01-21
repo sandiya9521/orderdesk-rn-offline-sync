@@ -1,5 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, Text, TouchableOpacity, ViewStyle} from 'react-native';
+import {Colors} from '../../constants/colors';
 import {styles} from './styles';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'success';
@@ -52,7 +53,9 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={isDisabled}
       activeOpacity={0.7}>
       {loading ? (
-        <ActivityIndicator color={variant === 'secondary' ? '#333333' : '#FFFFFF'} />
+        <ActivityIndicator
+          color={variant === 'secondary' ? Colors.textPrimary : Colors.white}
+        />
       ) : (
         <Text style={[styles.textBase, textColorStyle]}>{title}</Text>
       )}

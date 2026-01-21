@@ -1,27 +1,28 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: Colors.background,
   },
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: Colors.background,
   },
   scrollContent: {
     flexGrow: 1,
     padding: 16,
   },
   form: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderRadius: 8,
     padding: 16,
   },
   screenTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#333333',
+    color: Colors.textPrimary,
     marginBottom: 24,
   },
   buttonContainer: {

@@ -1,4 +1,5 @@
 import {Order, SyncStatus} from '../types';
+import {Strings} from '../constants/strings';
 
 /**
  * Mock API service for syncing orders
@@ -20,7 +21,7 @@ export const syncService = {
 
     // Optional simulated failures for testing purposes
     if (this.failureRate > 0 && Math.random() < this.failureRate) {
-      throw new Error('Network error: Failed to sync order');
+      throw new Error(Strings.errors.syncNetworkFailed);
     }
 
     // Return synced order with updated status

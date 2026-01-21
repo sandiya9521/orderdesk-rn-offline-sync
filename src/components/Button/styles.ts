@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   base: {
@@ -15,20 +16,20 @@ export const styles = StyleSheet.create({
 
   // Variants
   primary: {
-    backgroundColor: '#007AFF',
+    backgroundColor: Colors.primary,
   },
   success: {
-    backgroundColor: '#34C759',
+    backgroundColor: Colors.success,
   },
   secondary: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.surface,
     borderWidth: 1,
-    borderColor: '#CCCCCC',
+    borderColor: Colors.borderStrong,
   },
 
   // Disabled
   disabled: {
-    backgroundColor: '#CCCCCC',
+    backgroundColor: Colors.borderStrong,
     opacity: 0.6,
   },
 
@@ -37,12 +38,12 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   textOnPrimary: {
-    color: '#FFFFFF',
+    color: Colors.white,
   },
   textOnSuccess: {
-    color: '#FFFFFF',
+    color: Colors.white,
   },
   textOnSecondary: {
-    color: '#333333',
+    color: Colors.textPrimary,
   },
 });
