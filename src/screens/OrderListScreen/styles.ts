@@ -73,6 +73,7 @@ export const styles = StyleSheet.create({
     padding: 16,
     borderTopWidth: 1,
     borderTopColor: '#E5E5E5',
-    gap: 12,
+      gap: 12,
+    marginBottom: 16,
   },
 });
