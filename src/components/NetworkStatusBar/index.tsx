@@ -6,11 +6,7 @@ import {styles} from './styles';
 export const NetworkStatusBar: React.FC = () => {
   const isConnected = useNetworkStatus();
 
-  if (isConnected === null) {
-    return null;
-  }
-
-  if (isConnected) {
+  if (isConnected || isConnected === null) {
     return null;
   }
 

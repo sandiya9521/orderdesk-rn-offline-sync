@@ -6,6 +6,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -50,7 +51,9 @@ export const OrderListScreen: React.FC = () => {
   const handleOrderPress = (order: Order) => {
     if (order.syncStatus !== SyncStatus.SYNCED) {
       navigation.navigate('EditOrder', {orderId: order.id});
+      return;
     }
+    Alert.alert('Info', 'This order is already synced and cannot be edited.');
   };
 
   const handleRetrySync = (orderId: string) => {

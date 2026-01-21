@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
 import ordersReducer from './slices/ordersSlice';
 
 export const store = configureStore({
@@ -12,7 +11,7 @@ export const store = configureStore({
         // Ignore these action types
         ignoredActions: ['orders/loadOrdersFromStorage'],
       },
-    }).concat(thunk),
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

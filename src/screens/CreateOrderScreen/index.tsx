@@ -54,10 +54,13 @@ export const CreateOrderScreen: React.FC = () => {
 
     try {
       setIsSubmitting(true);
-      await dispatch(createOrder({title: title.trim(), amount: parseFloat(amount)})).unwrap();
+      await dispatch(createOrder({title: title.trim(), amount: parseFloat(amount)}));
       navigation.goBack();
     } catch (error) {
-      Alert.alert('Error', 'Failed to create order. Please try again.');
+      Alert.alert(
+        'Error',
+        error instanceof Error ? error.message : String(error),
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -88,13 +91,17 @@ export const CreateOrderScreen: React.FC = () => {
           />
           <View style={styles.buttonContainer}>
             <TouchableOpacity
-              style={styles.cancelButton}
+              style={[styles.button, styles.cancelButton]}
               onPress={() => navigation.goBack()}
               activeOpacity={0.7}>
               <Text style={styles.cancelButtonText}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.submitButton, isSubmitting && styles.submitButtonDisabled]}
+              style={[
+                styles.button,
+                styles.submitButton,
+                isSubmitting && styles.submitButtonDisabled,
+              ]}
               onPress={handleSubmit}
               disabled={isSubmitting}
               activeOpacity={0.7}>

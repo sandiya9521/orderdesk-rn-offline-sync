@@ -6,14 +6,20 @@ import {Order, SyncStatus} from '../types';
  */
 export const syncService = {
   /**
+   * Set > 0 (e.g. 0.1) to simulate failures and test FAILED / retry flows.
+   * Keep at 0 for normal behavior.
+   */
+  failureRate: 0,
+
+  /**
    * Sync a single order to the server
    */
   async syncOrder(order: Order): Promise<Order> {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Simulate random failures (10% failure rate for testing)
-    if (Math.random() < 0.1) {
+    // Optional simulated failures for testing purposes
+    if (this.failureRate > 0 && Math.random() < this.failureRate) {
       throw new Error('Network error: Failed to sync order');
     }
 

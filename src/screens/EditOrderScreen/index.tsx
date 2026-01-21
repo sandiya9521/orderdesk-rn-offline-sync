@@ -85,10 +85,10 @@ export const EditOrderScreen: React.FC = () => {
           title: title.trim(),
           amount: parseFloat(amount),
         }),
-      ).unwrap();
+      );
       navigation.goBack();
     } catch (error) {
-      Alert.alert('Error', error instanceof Error ? error.message : 'Failed to update order. Please try again.');
+      Alert.alert('Error', error instanceof Error ? error.message : String(error));
     } finally {
       setIsSubmitting(false);
     }
@@ -127,13 +127,17 @@ export const EditOrderScreen: React.FC = () => {
           />
           <View style={styles.buttonContainer}>
             <TouchableOpacity
-              style={styles.cancelButton}
+              style={[styles.button, styles.cancelButton]}
               onPress={() => navigation.goBack()}
               activeOpacity={0.7}>
               <Text style={styles.cancelButtonText}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.submitButton, isSubmitting && styles.submitButtonDisabled]}
+              style={[
+                styles.button,
+                styles.submitButton,
+                isSubmitting && styles.submitButtonDisabled,
+              ]}
               onPress={handleSubmit}
               disabled={isSubmitting}
               activeOpacity={0.7}>
