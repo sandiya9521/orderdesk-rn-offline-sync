@@ -65,6 +65,30 @@ export const OrderListScreen: React.FC = () => {
     dispatch(syncPendingOrders());
   };
 
+  const renderOrderItem = useCallback(
+    ({item}: {item: Order}) => (
+      <OrderCard
+        order={item}
+        onPress={() => handleOrderPress(item)}
+        onRetry={
+          item.syncStatus === SyncStatus.FAILED
+            ? () => handleRetrySync(item.id)
+            : undefined
+        }
+      />
+    ),
+    [handleOrderPress, handleRetrySync],
+  );
+
+  const renderEmptyComponent = () => (
+    <View style={styles.emptyContainer}>
+      <Text style={styles.emptyText}>No orders yet</Text>
+      <Text style={styles.emptySubtext}>
+        Create your first order to get started
+      </Text>
+    </View>
+  );
+
   const pendingCount = items.filter(order => order.syncStatus === SyncStatus.PENDING).length;
   const failedCount = items.filter(order => order.syncStatus === SyncStatus.FAILED).length;
 
@@ -100,26 +124,9 @@ export const OrderListScreen: React.FC = () => {
           data={items}
           keyExtractor={item => item.id}
           style={styles.list}
-          renderItem={({item}) => (
-            <OrderCard
-              order={item}
-              onPress={() => handleOrderPress(item)}
-              onRetry={
-                item.syncStatus === SyncStatus.FAILED
-                  ? () => handleRetrySync(item.id)
-                  : undefined
-              }
-            />
-          )}
-          contentContainerStyle={styles.listContent}
-          ListEmptyComponent={
-            <View style={styles.emptyContainer}>
-              <Text style={styles.emptyText}>No orders yet</Text>
-              <Text style={styles.emptySubtext}>
-                Create your first order to get started
-              </Text>
-            </View>
-          }
+          renderItem={renderOrderItem}
+          contentContainerStyle={items.length !== 0 ? styles.listContent : styles.listContentEmpty}
+          ListEmptyComponent={renderEmptyComponent}
           refreshControl={
             <RefreshControl
               refreshing={isSyncing}

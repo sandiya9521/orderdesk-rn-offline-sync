@@ -53,19 +53,26 @@ export const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 16,
   },
+  listContentEmpty: {
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+  },
   emptyContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 60,
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: '600',
-    color: '#666666',
+    color: 'black',
     marginBottom: 8,
   },
   emptySubtext: {
     fontSize: 14,
+    fontWeight: '400',
     color: '#999999',
   },
   footer: {

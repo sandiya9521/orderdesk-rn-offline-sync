@@ -47,6 +47,15 @@ export const CreateOrderScreen: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleAmountChange = (text: string) => {
+    // Only allow numbers and one decimal point
+    const filteredText = text
+      .replace(/[^0-9.]/g, '') // Remove all non-numeric characters except decimal point
+      .replace(/\.(?=.*\.)/g, ''); // Remove duplicate decimal points
+    
+    setAmount(filteredText);
+  };
+
   const handleSubmit = async () => {
     if (!validateForm()) {
       return;
@@ -81,11 +90,12 @@ export const CreateOrderScreen: React.FC = () => {
               placeholder="Enter order title"
               error={errors.title}
               autoCapitalize="words"
+              maxLength={30}
             />
             <Input
               label="Amount"
               value={amount}
-              onChangeText={setAmount}
+              onChangeText={handleAmountChange}
               placeholder="0.00"
               keyboardType="decimal-pad"
               error={errors.amount}
